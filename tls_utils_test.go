@@ -65,13 +65,13 @@ Cm26OWMohpLzGITY+9HPBVZkVw==
 `
 
 func TestLoadCertPool(t *testing.T) {
-	var err  error
-	var cp   *x509.CertPool
-	var fd   *os.File
+	var err error
+	var cp *x509.CertPool
+	var fd *os.File
 	var path string
 
 	// attemp to load a non-existent file: should fail
-	cp, err = LoadCertPool("non/existent/path/to/store")
+	_, err = LoadCertPool("non/existent/path/to/store")
 	if err == nil {
 		t.Errorf("LoadCertPool() should have failed")
 	}
@@ -91,7 +91,7 @@ func TestLoadCertPool(t *testing.T) {
 		return
 	}
 
-	cp, err = LoadCertPool(path)
+	_, err = LoadCertPool(path)
 	if err == nil {
 		t.Errorf("LoadCertPool() should have failed")
 	}
@@ -114,7 +114,7 @@ func TestLoadCertPool(t *testing.T) {
 		return
 	}
 
-	cp, err = LoadCertPool(path)
+	_, err = LoadCertPool(path)
 	if err == nil {
 		t.Errorf("LoadCertPool() should have failed")
 	}
@@ -146,6 +146,4 @@ func TestLoadCertPool(t *testing.T) {
 	if len(cp.Subjects()) != 2 {
 		t.Errorf("expected 2 certs in the pool, saw: %v", len(cp.Subjects()))
 	}
-
-	return
 }

@@ -41,9 +41,7 @@ type crc struct {
 
 // Prepares the CRC generator for use.
 func (c *crc) init() {
-	c.crc	= 0xffff
-
-	return
+	c.crc = 0xffff
 }
 
 // Adds the given bytes to the CRC.
@@ -51,12 +49,10 @@ func (c *crc) add(in []byte) {
 	var index byte
 
 	for _, b := range in {
-		index	= b ^ byte(c.crc & 0xff)
-		c.crc	>>= 8
-		c.crc	^= crcTable[index]
+		index = b ^ byte(c.crc&0xff)
+		c.crc >>= 8
+		c.crc ^= crcTable[index]
 	}
-
-	return
 }
 
 // Returns the CRC as two bytes, swapped.
