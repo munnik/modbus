@@ -223,6 +223,7 @@ func (mc *Client) Open() (err error) {
 			DataBits: mc.conf.DataBits,
 			Parity:   mc.conf.Parity,
 			StopBits: mc.conf.StopBits,
+			Timeout:  mc.conf.Timeout,
 		})
 
 		// open the serial device
