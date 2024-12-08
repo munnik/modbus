@@ -16,6 +16,9 @@ func newLogger(prefix string, customLogger *log.Logger) (l *logger) {
 		prefix:       prefix,
 		customLogger: customLogger,
 	}
+	if l.customLogger != nil {
+		l.customLogger.SetFlags(log.LstdFlags | log.Llongfile)
+	}
 
 	return
 }
